@@ -1,0 +1,40 @@
+.home-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.home-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.home-title {
+  color: #0B5BA8;
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.home-subtitle {
+  color: #666;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 32px;
+  }
+  
+  .home-subtitle {
+    font-size: 16px;
+  }
+  
+  .home-content {
+    padding: 20px 15px;
+  }
+}
+

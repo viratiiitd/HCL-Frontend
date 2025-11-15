@@ -1,0 +1,140 @@
+.appointment-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.appointment-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(11, 91, 168, 0.2);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.doctor-name {
+  color: #0B5BA8;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #f0f8ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.rating-value {
+  color: #0B5BA8;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.rating-star {
+  color: #ffa500;
+  font-size: 16px;
+}
+
+.card-body {
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.specialization {
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.experience {
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 15px 0;
+}
+
+.available-slots {
+  margin-top: 15px;
+}
+
+.slots-label {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+}
+
+.slots-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.slot-badge {
+  background-color: #e8f4f8;
+  color: #0B5BA8;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid #0B5BA8;
+}
+
+.book-button {
+  background-color: #0B5BA8;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  width: 100%;
+  margin-top: auto;
+}
+
+.book-button:hover {
+  background-color: #094a8a;
+}
+
+.book-button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .appointment-cards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .appointment-card {
+    padding: 20px;
+  }
+  
+  .doctor-name {
+    font-size: 20px;
+  }
+}
+
