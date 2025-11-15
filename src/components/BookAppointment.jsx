@@ -72,7 +72,7 @@ const BookAppointment = ({ doctor, onBack, onSubmit }) => {
                 {doctor.name}
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                {doctor.specialization} • {doctor.experience} experience
+                {doctor.specialization}
               </Typography>
               <Typography variant="body2" sx={{ fontWeight: 500, mb: 1 }}>
                 Available Time Slots:

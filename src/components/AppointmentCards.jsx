@@ -1,6 +1,5 @@
 import React from 'react'
-import { Grid, Card, CardContent, CardActions, Typography, Button, Box, Chip, Rating } from '@mui/material'
-import StarIcon from '@mui/icons-material/Star'
+import { Grid, Card, CardContent, CardActions, Typography, Button, Box, Chip } from '@mui/material'
 
 const AppointmentCards = ({ onBookAppointment }) => {
   // Sample doctor data - will be replaced with API data later
@@ -77,33 +76,12 @@ const AppointmentCards = ({ onBookAppointment }) => {
             }}
           >
             <CardContent sx={{ flexGrow: 1 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2, pb: 2, borderBottom: '1px solid #eee' }}>
-                <Typography variant="h6" component="h3" sx={{ color: '#0B5BA8', fontWeight: 600 }}>
-                  {doctor.name}
-                </Typography>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 0.5,
-                    bgcolor: '#f0f8ff',
-                    px: 1.5,
-                    py: 0.5,
-                    borderRadius: '20px',
-                  }}
-                >
-                  <Typography variant="body2" sx={{ color: '#0B5BA8', fontWeight: 600 }}>
-                    {doctor.rating}
-                  </Typography>
-                  <StarIcon sx={{ color: '#ffa500', fontSize: 16 }} />
-                </Box>
-              </Box>
-              
-              <Typography variant="body1" sx={{ fontWeight: 500, mb: 1 }}>
-                {doctor.specialization}
+              <Typography variant="h6" component="h3" sx={{ color: '#0B5BA8', fontWeight: 600, mb: 2, pb: 2, borderBottom: '1px solid #eee' }}>
+                {doctor.name}
               </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Experience: {doctor.experience}
+              
+              <Typography variant="body1" sx={{ fontWeight: 500, mb: 2 }}>
+                {doctor.specialization}
               </Typography>
               
               <Box sx={{ mt: 2 }}>

@@ -6,6 +6,7 @@ import SignUp from './components/SignUp'
 import PatientDetailsForm from './components/PatientDetailsForm'
 import Home from './components/Home'
 import BookAppointment from './components/BookAppointment'
+import Profile from './components/Profile'
 import Navbar from './components/Navbar'
 import theme from './theme'
 import './App.css'
@@ -39,6 +40,10 @@ function App() {
   const handleBackToHome = () => {
     setCurrentPage('home')
     setSelectedDoctor(null)
+  }
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page)
   }
 
   const handleBookingSubmit = (bookingData) => {
@@ -96,7 +101,7 @@ function App() {
       case 'book':
         return (
           <>
-            <Navbar onLogout={handleLogout} />
+            <Navbar onLogout={handleLogout} onNavigate={handleNavigate} currentPage={currentPage} />
             <BookAppointment
               doctor={selectedDoctor}
               onBack={handleBackToHome}
@@ -104,9 +109,21 @@ function App() {
             />
           </>
         )
+      case 'profile':
+        return (
+          <>
+            <Navbar onLogout={handleLogout} onNavigate={handleNavigate} currentPage={currentPage} />
+            <Profile onBack={handleBackToHome} />
+          </>
+        )
       case 'home':
       default:
-        return <Home onLogout={handleLogout} onBookAppointment={handleBookAppointment} />
+        return (
+          <>
+            <Navbar onLogout={handleLogout} onNavigate={handleNavigate} currentPage={currentPage} />
+            <Home onLogout={handleLogout} onBookAppointment={handleBookAppointment} />
+          </>
+        )
     }
   }
 
