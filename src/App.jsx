@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import PatientDetailsForm from './components/PatientDetailsForm'
 import Home from './components/Home'
 import BookAppointment from './components/BookAppointment'
 import Navbar from './components/Navbar'
@@ -14,6 +15,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [selectedDoctor, setSelectedDoctor] = useState(null)
   const [showSignUp, setShowSignUp] = useState(false)
+  const [showPatientDetails, setShowPatientDetails] = useState(false)
 
   const handleLogin = () => {
     setIsLoggedIn(true)
@@ -26,6 +28,7 @@ function App() {
     setCurrentPage('home')
     setSelectedDoctor(null)
     setShowSignUp(false)
+    setShowPatientDetails(false)
   }
 
   const handleBookAppointment = (doctor) => {
@@ -54,14 +57,35 @@ function App() {
   }
 
   const handleSignUp = () => {
-    // After successful signup, redirect to login
+    // After successful signup, show patient details form
     setShowSignUp(false)
-    // Optionally auto-login or show success message
-    alert('Registration successful! Please login.')
+    setShowPatientDetails(true)
+  }
+
+  const handlePatientDetailsSubmit = (patientData) => {
+    console.log('Patient details submitted:', patientData)
+    // Will be replaced with API call later
+    // After submitting patient details, redirect to login
+    setShowPatientDetails(false)
+    alert('Registration completed successfully! Please login to continue.')
+  }
+
+  const handleSkipPatientDetails = () => {
+    // Allow user to skip patient details and go directly to login
+    setShowPatientDetails(false)
+    alert('Registration successful! You can add your details later. Please login to continue.')
   }
 
   const renderPage = () => {
     if (!isLoggedIn) {
+      if (showPatientDetails) {
+        return (
+          <PatientDetailsForm
+            onSubmit={handlePatientDetailsSubmit}
+            onSkip={handleSkipPatientDetails}
+          />
+        )
+      }
       if (showSignUp) {
         return <SignUp onSignUp={handleSignUp} onNavigateToLogin={handleNavigateToLogin} />
       }
