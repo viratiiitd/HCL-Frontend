@@ -10,13 +10,12 @@
   border-radius: 12px;
   padding: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: box-shadow 0.3s;
   display: flex;
   flex-direction: column;
 }
 
 .appointment-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 4px 16px rgba(11, 91, 168, 0.2);
 }
 
