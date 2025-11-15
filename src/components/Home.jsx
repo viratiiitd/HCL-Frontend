@@ -3,7 +3,7 @@ import { Container, Typography, Box } from '@mui/material'
 import Navbar from './Navbar'
 import AppointmentCards from './AppointmentCards'
 
-const Home = ({ onLogout }) => {
+const Home = ({ onLogout, onBookAppointment }) => {
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
       <Navbar onLogout={onLogout} />
@@ -30,7 +30,7 @@ const Home = ({ onLogout }) => {
         >
           Select a doctor to schedule your appointment
         </Typography>
-        <AppointmentCards />
+        <AppointmentCards onBookAppointment={onBookAppointment} />
       </Container>
     </Box>
   )
