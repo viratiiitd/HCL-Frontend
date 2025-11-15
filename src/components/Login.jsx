@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Box, Container, Card, CardContent, TextField, Button, Typography, Link } from '@mui/material'
 import CodeIcon from '@mui/icons-material/Code'
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, onNavigateToSignUp }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -115,9 +115,19 @@ const Login = ({ onLogin }) => {
             
             <Box sx={{ mt: 3, textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 1 }}>
               <Typography variant="body2" sx={{ color: '#2c3e50' }}>
-                ALREADY REGISTERED?
+                NOT REGISTERED?
               </Typography>
-              <Link href="#" sx={{ color: '#0B5BA8', fontWeight: 600 }} underline="hover">
+              <Link 
+                href="#" 
+                sx={{ color: '#0B5BA8', fontWeight: 600, cursor: 'pointer' }} 
+                underline="hover"
+                onClick={(e) => {
+                  e.preventDefault()
+                  if (onNavigateToSignUp) {
+                    onNavigateToSignUp()
+                  }
+                }}
+              >
                 REGISTER HERE
               </Link>
             </Box>
