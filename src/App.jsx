@@ -4,35 +4,65 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Home from './components/Home'
+import BookAppointment from './components/BookAppointment'
+import Navbar from './components/Navbar'
 import theme from './theme'
 import './App.css'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [showSignUp, setShowSignUp] = useState(false)
+  const [currentPage, setCurrentPage] = useState('home')
+  const [selectedDoctor, setSelectedDoctor] = useState(null)
 
   const handleLogin = () => {
     setIsLoggedIn(true)
-    setShowSignUp(false)
+    setCurrentPage('home')
   }
 
   const handleLogout = () => {
     setIsLoggedIn(false)
-    setShowSignUp(false)
+    setCurrentPage('home')
+    setSelectedDoctor(null)
   }
 
-  const handleNavigateToSignUp = () => {
-    setShowSignUp(true)
+  const handleBookAppointment = (doctor) => {
+    setSelectedDoctor(doctor)
+    setCurrentPage('book')
   }
 
-  const handleNavigateToLogin = () => {
-    setShowSignUp(false)
+  const handleBackToHome = () => {
+    setCurrentPage('home')
+    setSelectedDoctor(null)
   }
 
-  const handleSignUp = () => {
-    // After successful signup, redirect to login
-    setShowSignUp(false)
-    // Optionally auto-login or show success message
+  const handleBookingSubmit = (bookingData) => {
+    console.log('Booking submitted:', bookingData)
+    // Will be replaced with API call later
+    alert('Appointment booked successfully!')
+    handleBackToHome()
+  }
+
+  const renderPage = () => {
+    if (!isLoggedIn) {
+      return <Login onLogin={handleLogin} />
+    }
+
+    switch (currentPage) {
+      case 'book':
+        return (
+          <>
+            <Navbar onLogout={handleLogout} />
+            <BookAppointment
+              doctor={selectedDoctor}
+              onBack={handleBackToHome}
+              onSubmit={handleBookingSubmit}
+            />
+          </>
+        )
+      case 'home':
+      default:
+        return <Home onLogout={handleLogout} onBookAppointment={handleBookAppointment} />
+    }
   }
 
   return (

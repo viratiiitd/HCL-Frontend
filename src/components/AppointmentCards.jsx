@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid, Card, CardContent, CardActions, Typography, Button, Box, Chip, Rating } from '@mui/material'
 import StarIcon from '@mui/icons-material/Star'
 
-const AppointmentCards = () => {
+const AppointmentCards = ({ onBookAppointment }) => {
   // Sample doctor data - will be replaced with API data later
   const doctors = [
     {
@@ -55,9 +55,10 @@ const AppointmentCards = () => {
     }
   ]
 
-  const handleBookAppointment = (doctorId) => {
-    console.log('Booking appointment with doctor:', doctorId)
-    // Will be replaced with API call later
+  const handleBookAppointment = (doctor) => {
+    if (onBookAppointment) {
+      onBookAppointment(doctor)
+    }
   }
 
   return (
@@ -132,7 +133,7 @@ const AppointmentCards = () => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={() => handleBookAppointment(doctor.id)}
+                onClick={() => handleBookAppointment(doctor)}
               >
                 Book Appointment
               </Button>
