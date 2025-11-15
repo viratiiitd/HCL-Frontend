@@ -13,16 +13,19 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [currentPage, setCurrentPage] = useState('home')
   const [selectedDoctor, setSelectedDoctor] = useState(null)
+  const [showSignUp, setShowSignUp] = useState(false)
 
   const handleLogin = () => {
     setIsLoggedIn(true)
     setCurrentPage('home')
+    setShowSignUp(false)
   }
 
   const handleLogout = () => {
     setIsLoggedIn(false)
     setCurrentPage('home')
     setSelectedDoctor(null)
+    setShowSignUp(false)
   }
 
   const handleBookAppointment = (doctor) => {
@@ -42,9 +45,27 @@ function App() {
     handleBackToHome()
   }
 
+  const handleNavigateToSignUp = () => {
+    setShowSignUp(true)
+  }
+
+  const handleNavigateToLogin = () => {
+    setShowSignUp(false)
+  }
+
+  const handleSignUp = () => {
+    // After successful signup, redirect to login
+    setShowSignUp(false)
+    // Optionally auto-login or show success message
+    alert('Registration successful! Please login.')
+  }
+
   const renderPage = () => {
     if (!isLoggedIn) {
-      return <Login onLogin={handleLogin} />
+      if (showSignUp) {
+        return <SignUp onSignUp={handleSignUp} onNavigateToLogin={handleNavigateToLogin} />
+      }
+      return <Login onLogin={handleLogin} onNavigateToSignUp={handleNavigateToSignUp} />
     }
 
     switch (currentPage) {
@@ -69,13 +90,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
-        {isLoggedIn ? (
-          <Home onLogout={handleLogout} />
-        ) : showSignUp ? (
-          <SignUp onSignUp={handleSignUp} onNavigateToLogin={handleNavigateToLogin} />
-        ) : (
-          <Login onLogin={handleLogin} onNavigateToSignUp={handleNavigateToSignUp} />
-        )}
+        {renderPage()}
       </div>
     </ThemeProvider>
   )
